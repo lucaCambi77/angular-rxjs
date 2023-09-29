@@ -1,9 +1,12 @@
-import { TestBed } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import {TestBed} from '@angular/core/testing';
+import {AppComponent} from './app.component';
+import {ReadComponent} from "./read/read.component";
+import {MockComponent} from "ng-mocks";
+import {CreateComponent} from "./create/create.component";
 
 describe('AppComponent', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    declarations: [AppComponent]
+    declarations: [AppComponent, MockComponent(ReadComponent), MockComponent(CreateComponent)]
   }));
 
   it('should create the app', () => {
@@ -16,12 +19,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app.title).toEqual('angular-rxjs');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('angular-rxjs app is running!');
   });
 });
