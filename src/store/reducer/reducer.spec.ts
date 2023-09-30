@@ -1,11 +1,10 @@
 import {reducer} from "./reducer";
-import {postTutorial} from "../action/action";
+import {postTutorialAction} from "../action/action";
 
 describe('reducers', () => {
 
   it('should match initial state', () => {
-    let state;
-    state = reducer([{name: 'Google', url: 'https://google.com'}], postTutorial);
+    const state = reducer([{name: 'Google', url: 'https://google.com'}], postTutorialAction);
     expect(state).toEqual([{name: 'Google', url: 'https://google.com'}]);
   });
 });

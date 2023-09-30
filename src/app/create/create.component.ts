@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {TutorialState} from "../../store/state/state";
-import {postTutorial} from "../../store/action/action";
+import {postTutorialDispatch} from "../../store/action/action";
 
 @Component({
   selector: 'app-create',
@@ -14,6 +14,6 @@ export class CreateComponent {
   }
 
   addTutorial(name: string, url: string) {
-    this.store.dispatch(postTutorial({tutorial: {name: name, url: url}}))
+    postTutorialDispatch(this.store, {name: name, url: url})
   }
 }
