@@ -3,7 +3,7 @@ import {AppComponent} from './app.component';
 import {ReadComponent} from "./read/read.component";
 import {CreateComponent} from "./create/create.component";
 import {StoreModule} from "@ngrx/store";
-import {reducer} from "../store/reducer/reducer";
+import {initialState, reducer} from "../store/reducer/reducer";
 import {Tutorial} from "../model/tutorial.model";
 
 describe('AppComponent', () => {
@@ -29,10 +29,10 @@ describe('AppComponent', () => {
     it(`should match tutorial initial state'`, () => {
         const fixture = TestBed.createComponent(ReadComponent);
         const app = fixture.componentInstance;
-        let actual : Tutorial[] = []
+        let actual: Tutorial[] = []
         app.tutorials.subscribe(tutorial => actual = tutorial)
         expect(actual.length).toEqual(1);
-        expect(actual).toEqual([{name : 'Google', url: 'https://google.com'}]);
+        expect(actual).toEqual([initialState]);
     });
 
     it(`should dispatch a tutorial'`, () => {
@@ -42,10 +42,10 @@ describe('AppComponent', () => {
         const createComponent = createComponentComponentFixture.componentInstance;
         createComponent.addTutorial('Test', 'http://localhost:8080')
 
-        let actual : Tutorial[] = []
+        let actual: Tutorial[] = []
         readComponent.tutorials.subscribe(tutorial => actual = tutorial)
 
         expect(actual.length).toEqual(2);
-        expect(actual).toEqual([{name : 'Google', url: 'https://google.com'}, {name : 'Test', url: 'http://localhost:8080'}]);
+        expect(actual).toEqual([initialState, {name: 'Test', url: 'http://localhost:8080'}]);
     });
 });
